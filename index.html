@@ -1,25 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Course Watcher</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
-    <script src="assets/scripts/update.js" defer></script>
-</head>
-<body>
-    <p>
-        Welcome to the University of Toronto Course Watcher! Here, you can add in courses that
-        you want to watch and get real-time updates on the enrollment numbers on your courses.
-    </p>
-    <div id="payload">
-        <div class="row">
-            <div class="course" id="course1">CSC207H1F</div>
-            <div class="lecture" id="lecture1">LEC0101</div>
-            <div class="enrollment" id="enrollment1"></div>
-            <div class="total" id="total1"></div>
-        </div>
-    </div>
-    <button id=addCourse onclick="addCourse()" value="hide/show">Add Course</button>
+<html>
+	<body>
+    <form action="http://127.0.0.1:8081/get_information" method="POST">
+      Course ID: <input type="text" name="course_id"/>
+      <input type="submit" value="Submit">
+    </form>
+	</body>
 
-</body>
 </html>
+
