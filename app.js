@@ -53,6 +53,7 @@ app.get('/ab*cd', function(req, res){
 
 app.post('/get_information', (req, res) => {
   console.log("Hello there");
+  console.log(req.body);
   var course_id = req.body.course_id;
   console.log(course_id);
 
@@ -62,11 +63,11 @@ app.post('/get_information', (req, res) => {
     }
   })
   .then( (response) => {
-    console.log(response);
     res.end(JSON.stringify(response.data));
   })
   .catch( (error) => {
-    console.log(error); 
+    res.status = 404;
+    res.send("Failed!");
   });
 });
 

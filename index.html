@@ -1,10 +1,44 @@
 <html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+
 	<body>
-    <form action="http://127.0.0.1:8081/get_information" method="POST">
+    <div id="form">
       Course ID: <input type="text" name="course_id"/>
-      <input type="submit" value="Submit">
-    </form>
+      <input type="submit" value="Submit" onclick="getInfo()">
+    </div>
+
+    <div id="payload">
+    
+    
+    </div>
 	</body>
+
+  <script type-"javascript">
+    
+    function getInfo(){
+      // Remember to verify
+      var course_id = $("input[name=course_id]").val();
+      var json = {
+        course_id: course_id
+      };
+      $.ajax(
+          {
+            url: "http://127.0.0.1:8081/get_information",
+            dataType: "JSON",
+            data: json,
+            type: "POST",
+            success: function(data) {
+              alert(data.map(x => x.id));
+              $("#payload").html(data.map(x => JSON.stringify(x)))
+            },
+            failure: function() {
+              alert("Failure");
+            }
+          })
+      }
+  </script>
 
 </html>
 
