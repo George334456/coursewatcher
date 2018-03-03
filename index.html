@@ -15,7 +15,7 @@
     </div>
 	</body>
 
-  <script type-"javascript">
+  <script type="application/javascript">
     
     function getInfo(){
       // Remember to verify
@@ -30,7 +30,6 @@
             data: json,
             type: "POST",
             success: function(data) {
-              alert(data.map(x => x.id));
               $("#payload").html(data.map(x => JSON.stringify(x)))
             },
             failure: function() {
@@ -38,6 +37,14 @@
             }
           })
       }
+
+    // Used to parse out the necessary components of the passed back JSON object
+    // @param {json object} data
+    // @return {dictionary}
+    function getEnrollment(data){
+      return;
+    }
+
   </script>
 
 </html>

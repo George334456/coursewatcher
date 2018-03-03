@@ -9,6 +9,8 @@ const axios = require("axios");
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+var parsing = require('./lib/parsing.js');
+
 var app = express();
 
 // view engine setup
@@ -26,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
+// Used to grab all the courses available
 app.get('/courses', (req, res) => {
   axios.get('https://cobalt.qas.im/api/1.0/courses',{
     headers:{
@@ -33,8 +36,10 @@ app.get('/courses', (req, res) => {
     }
   })	
     .then((response) => {
-      console.log(response);
-      res.end(JSON.stringify(response.data));
+      debugger;
+      let courses = response.data.map( (x) => ( parsing.parseCourseData(x)) );
+      console.log(courses);
+      res.end(JSON.stringify(courses));
     })
     .catch((error) => {
       console.log(error);
@@ -52,9 +57,9 @@ app.get('/ab*cd', function(req, res){
 });
 
 app.post('/get_information', (req, res) => {
-  console.log("Hello there");
+  debugger;
   console.log(req.body);
-  var course_id = req.body.course_id;
+  let course_id = req.body.course_id;
   console.log(course_id);
 
   axios.get('http://127.0.0.1:4242/1.0/courses/search', {
@@ -63,7 +68,9 @@ app.post('/get_information', (req, res) => {
     }
   })
   .then( (response) => {
-    res.end(JSON.stringify(response.data));
+    let courses = response.data.map( (x) => (parsing.parseCourseData(x)));
+    res.end(JSON.stringify(courses));
+    //res.end(JSON.stringify(response.data));
   })
   .catch( (error) => {
     res.status = 404;
