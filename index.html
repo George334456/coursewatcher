@@ -1,6 +1,7 @@
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type='text/css' href="stylesheets/index.css" />
   </head>
 
 	<body>
@@ -10,8 +11,6 @@
     </div>
 
     <div id="payload">
-    
-    
     </div>
 	</body>
 
@@ -24,6 +23,13 @@
         course_id: course_id
       };
       console.log(json);
+      expectHtmlData(json);
+    };
+
+    // Used to parse out the necessary components of the passed back JSON object
+    // @param {json object} data
+    // @return {dictionary}
+    function expectJsonData(json){
       $.ajax(
       {
         url: "http://127.0.0.1:8081/get_information",
@@ -34,21 +40,31 @@
           debugger;
           alert(data);
           console.log(data);
-          //$("#payload").html(data)
-          //$("#payload").html(data.map(x => JSON.stringify(x)))
         },
         failure: function() {
           alert("Failure");
         }
       });
-    };
-
-    // Used to parse out the necessary components of the passed back JSON object
-    // @param {json object} data
-    // @return {dictionary}
-    function getEnrollment(data){
-      return;
     }
+
+    function expectHtmlData(json){
+      debugger;
+      $.ajax(
+      {
+        url: "http://127.0.0.1:8081/get_information",
+        dataType: "html",
+        data: json,
+        type: "POST",
+        success: function(data) {
+          $("#payload").html(data)
+        },
+        failure: function() {
+          alert("Failure");
+        }
+      });
+    }
+
+  
 
   </script>
 

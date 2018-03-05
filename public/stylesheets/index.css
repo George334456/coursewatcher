@@ -1,0 +1,7 @@
+.row {
+  display: inline-block;
+}
+
+.row > div{
+  display: inline-block;
+}

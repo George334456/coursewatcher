@@ -13,6 +13,7 @@ var parsing = require('./lib/parsing.js');
 
 var app = express();
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 var engines = require('consolidate');
@@ -71,20 +72,17 @@ app.post('/get_information', (req, res) => {
     }
   })
   .then( (response) => {
-    res.send("Hello");
     //let courses = response.data.map( (x) => (parsing.parseCourseData(x)));
-    //res.render('partials/table.ejs', {}, (err, html) => {
-    //  if (err){
-    //    console.log(err);
-    //    res.render('error');
-    //  }
-    //  else{
-    //    debugger;
-    //    console.log(html);
-    //    res.end("Hello");
-    //    //res.send(html);
-    //  }
-    //});
+    res.render('partials/table.ejs', {}, (err, html) => {
+      if (err){
+        console.log(err);
+        res.render('error');
+      }
+      else{
+        console.log(html);
+        res.send(html);
+      }
+    });
     //res.end(JSON.stringify(courses));
   })
   .catch( (error) => {
