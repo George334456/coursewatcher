@@ -23,20 +23,25 @@
       var json = {
         course_id: course_id
       };
+      console.log(json);
       $.ajax(
-          {
-            url: "http://127.0.0.1:8081/get_information",
-            dataType: "JSON",
-            data: json,
-            type: "POST",
-            success: function(data) {
-              $("#payload").html(data.map(x => JSON.stringify(x)))
-            },
-            failure: function() {
-              alert("Failure");
-            }
-          })
-      }
+      {
+        url: "http://127.0.0.1:8081/get_information",
+        dataType: "JSON",
+        data: json,
+        type: "POST",
+        success: function(data) {
+          debugger;
+          alert(data);
+          console.log(data);
+          //$("#payload").html(data)
+          //$("#payload").html(data.map(x => JSON.stringify(x)))
+        },
+        failure: function() {
+          alert("Failure");
+        }
+      });
+    };
 
     // Used to parse out the necessary components of the passed back JSON object
     // @param {json object} data

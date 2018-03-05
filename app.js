@@ -15,6 +15,10 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+var engines = require('consolidate');
+app.engine('jade', engines.jade);
+app.engine('ejs', engines.ejs);
+
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
@@ -57,7 +61,6 @@ app.get('/ab*cd', function(req, res){
 });
 
 app.post('/get_information', (req, res) => {
-  debugger;
   console.log(req.body);
   let course_id = req.body.course_id;
   console.log(course_id);
@@ -68,9 +71,21 @@ app.post('/get_information', (req, res) => {
     }
   })
   .then( (response) => {
-    let courses = response.data.map( (x) => (parsing.parseCourseData(x)));
-    res.end(JSON.stringify(courses));
-    //res.end(JSON.stringify(response.data));
+    res.send("Hello");
+    //let courses = response.data.map( (x) => (parsing.parseCourseData(x)));
+    //res.render('partials/table.ejs', {}, (err, html) => {
+    //  if (err){
+    //    console.log(err);
+    //    res.render('error');
+    //  }
+    //  else{
+    //    debugger;
+    //    console.log(html);
+    //    res.end("Hello");
+    //    //res.send(html);
+    //  }
+    //});
+    //res.end(JSON.stringify(courses));
   })
   .catch( (error) => {
     res.status = 404;
