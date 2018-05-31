@@ -1,7 +1,46 @@
-.row {
+.section {
+  display: inline-block;
+  height: auto;
+}
+
+.section_row {
+  display: block;
+}
+
+.section_row > div {
   display: inline-block;
 }
 
-.row > div{
+.section_row .meeting_section{
+  width: 30%
+}
+
+.section_row .enrollment{
+  width: 30%
+}
+
+.section_row .instructor{
+  width: 40%
+}
+
+.row {
+  width: 100%;
+  height: auto;
+  white-space:nowrap;
+}
+
+.row .course_code {
+  width: 25%;
+  display:inline-block;
+}
+
+.row .section{
+  width: 75%;
+  height:auto;
   display: inline-block;
 }
+
+.header > div {
+  display:inline-block;
+}
+
